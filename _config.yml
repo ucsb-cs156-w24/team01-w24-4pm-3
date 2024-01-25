@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-w24/team01-w24-4pm-3
 owner: ucsb-cs156-w24
 repo_name: team01-w24-4pm-3
-pull_requests: [{"author":{"id":"MDQ6VXNlcjQwNDAzOTY0","is_bot":false,"login":"aardvarkzone","name":"Advait Arumugam"},"headRefName":"Advait-JokeQuery","number":22,"title":"aa - JokeQueryService and JokeQueryServiceTests added","url":"https://github.com/ucsb-cs156-w24/team01-w24-4pm-3/pull/22"}]
+pull_requests: []
