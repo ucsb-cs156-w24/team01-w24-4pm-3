@@ -21,14 +21,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name="Zipcode info from https://api.zippopotam.us/")
 @Slf4j
 @RestController
-@RequestMapping("/api/zipcodes")
+@RequestMapping("/api/zipcode")
 public class ZipCodeController {
     ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     ZipCodeQueryService zipCodeQueryService;
 
-    @Operation(summary="Get info about a zipcode", description ="Zipcode information")
+    @Operation(summary="Get info about a zipcode", description ="JSON return format documented here: https://api.zippopotam.us/")
     @GetMapping("/get")
     public ResponseEntity<String> getZipCodes(
         @Parameter(name="zipcode", example="93117") @RequestParam String zipcode
