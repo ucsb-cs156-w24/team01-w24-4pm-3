@@ -12,7 +12,7 @@ team01,edu.ucsb.cs156.spring.backenddemo.controllers,TidesController,0,3,0,0,0,1
 team01,edu.ucsb.cs156.spring.backenddemo.services,EarthquakeQueryService,0,64,0,0,0,15,0,3,0,3
 team01,edu.ucsb.cs156.spring.backenddemo.services,PublicHolidayQueryService,2,11,0,0,1,4,1,2,1,2
 team01,edu.ucsb.cs156.spring.backenddemo.services,JokeQueryService,0,53,0,0,0,13,0,3,0,3
-team01,edu.ucsb.cs156.spring.backenddemo.services,ZipCodeQueryService,2,7,0,0,1,3,1,1,1,1
+team01,edu.ucsb.cs156.spring.backenddemo.services,ZipCodeQueryService,0,49,0,0,0,12,0,3,0,3
 team01,edu.ucsb.cs156.spring.backenddemo.services,CountryCodeQueryService,0,54,0,0,0,13,0,3,0,3
 team01,edu.ucsb.cs156.spring.backenddemo.services,UniversityQueryService,2,11,0,0,1,4,1,2,1,2
 team01,edu.ucsb.cs156.spring.backenddemo.services,TidesQueryService,2,7,0,0,1,3,1,1,1,1

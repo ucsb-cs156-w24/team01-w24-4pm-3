@@ -2,24 +2,44 @@
 
 import org.springframework.web.client.RestTemplate;
 
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+<span class="fc" id="L18">@Slf4j</span>
 @Service
 public class ZipCodeQueryService {
 
     private final RestTemplate restTemplate;
 
-<span class="fc" id="L15">    public ZipCodeQueryService(RestTemplateBuilder restTemplateBuilder) {</span>
-<span class="fc" id="L16">        restTemplate = restTemplateBuilder.build();</span>
-<span class="fc" id="L17">    }</span>
+<span class="fc" id="L24">    public ZipCodeQueryService(RestTemplateBuilder restTemplateBuilder) {</span>
+<span class="fc" id="L25">        restTemplate = restTemplateBuilder.build();</span>
+<span class="fc" id="L26">    }</span>
 
-    public static final String ENDPOINT = &quot;&quot;;
+    public static final String ENDPOINT = &quot;http://api.zippopotam.us/us/{zipcode}&quot;;
 
     public String getJSON(String zipcode) throws HttpClientErrorException {
-<span class="nc" id="L22">       return &quot;&quot;;</span>
+<span class="fc" id="L31">        log.info(&quot;zipcode={}&quot;, zipcode);</span>
+<span class="fc" id="L32">        HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L33">        headers.setAccept(List.of(MediaType.APPLICATION_JSON));</span>
+<span class="fc" id="L34">        headers.setContentType(MediaType.APPLICATION_JSON);</span>
+
+<span class="fc" id="L36">        Map&lt;String, String&gt; uriVariables = Map.of(&quot;zipcode&quot;, zipcode);</span>
+
+<span class="fc" id="L38">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(&quot;body&quot;, headers);</span>
+
+<span class="fc" id="L40">        ResponseEntity&lt;String&gt; re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,</span>
+                uriVariables);
+<span class="fc" id="L42">        return re.getBody();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
