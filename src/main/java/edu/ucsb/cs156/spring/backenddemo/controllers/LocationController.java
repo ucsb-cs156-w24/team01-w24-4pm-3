@@ -32,7 +32,7 @@ public class LocationController {
     @Operation(summary = "Get list of locations that match a certain location name", description = "Uses API documented here: https://nominatim.org/release-docs/develop/api/Search/")
     @GetMapping("/get")
     public ResponseEntity<String> getLocation(
-        @Parameter(name="location", description="name to search, Example: 'Isla Vista'") @RequestParam String location
+        @Parameter(name="location", description="name to search",example="Isla Vista") @RequestParam String location
     ) throws JsonProcessingException {
         log.info("getLocation: location={}", location);
         String result = LocationQueryService.getJSON(location);
