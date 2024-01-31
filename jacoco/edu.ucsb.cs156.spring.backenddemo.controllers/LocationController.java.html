@@ -32,7 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
     @Operation(summary = &quot;Get list of locations that match a certain location name&quot;, description = &quot;Uses API documented here: https://nominatim.org/release-docs/develop/api/Search/&quot;)
     @GetMapping(&quot;/get&quot;)
     public ResponseEntity&lt;String&gt; getLocation(
-        @Parameter(name=&quot;location&quot;, description=&quot;name to search, Example: 'Isla Vista'&quot;) @RequestParam String location
+        @Parameter(name=&quot;location&quot;, description=&quot;name to search&quot;,example=&quot;Isla Vista&quot;) @RequestParam String location
     ) throws JsonProcessingException {
 <span class="fc" id="L37">        log.info(&quot;getLocation: location={}&quot;, location);</span>
 <span class="fc" id="L38">        String result = LocationQueryService.getJSON(location);</span>
