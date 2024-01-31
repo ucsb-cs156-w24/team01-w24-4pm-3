@@ -18,12 +18,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name=&quot;Joke API&quot;)
-<span class="fc" id="L22">@Slf4j</span>
+@Tag(name=&quot;Jokes from https://v2.jokeapi.dev/&quot;)
+
+<span class="fc" id="L23">@Slf4j</span>
 @RestController
 @RequestMapping(&quot;/api/jokes&quot;)
-<span class="fc" id="L25">public class JokeController {</span>
-<span class="fc" id="L26">    ObjectMapper mapper = new ObjectMapper();</span>
+<span class="fc" id="L26">public class JokeController {</span>
+<span class="fc" id="L27">    ObjectMapper mapper = new ObjectMapper();</span>
 
     @Autowired
     JokeQueryService jokeQueryService;
@@ -34,10 +35,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         @Parameter(name=&quot;category&quot;, description=&quot;The category of the joke&quot;, example=&quot;Programming&quot;) @RequestParam String category,
         @Parameter(name=&quot;amount&quot;, description=&quot;The amount of jokes to get&quot;, example=&quot;1&quot;) @RequestParam String amount
     ) throws JsonProcessingException {
-<span class="fc" id="L37">        log.info(&quot;getJokes: category={} amount={}&quot;, category, amount);</span>
-<span class="fc" id="L38">        int numJokes = Integer.parseInt(amount); </span>
-<span class="fc" id="L39">        String result = jokeQueryService.getJSON(category, numJokes);</span>
-<span class="fc" id="L40">        return ResponseEntity.ok().body(result);</span>
+<span class="fc" id="L38">        log.info(&quot;getJokes: category={} amount={}&quot;, category, amount);</span>
+<span class="fc" id="L39">        int numJokes = Integer.parseInt(amount); </span>
+<span class="fc" id="L40">        String result = jokeQueryService.getJSON(category, numJokes);</span>
+<span class="fc" id="L41">        return ResponseEntity.ok().body(result);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
