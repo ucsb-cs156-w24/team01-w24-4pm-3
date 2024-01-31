@@ -26,7 +26,7 @@ public class PublicHolidayQueryServiceTests {
 
         String year = "2003";
         String countryCode = "US";
-        String expectedURL = JokeQueryService.ENDPOINT.replace("{year}", year)
+        String expectedURL = PublicHolidayQueryService.ENDPOINT.replace("{year}", year)
                 .replace("{countryCode}", String.valueOf(countryCode));
 
         String fakeJsonResult = "{ \"fake\" : \"This is a fake Public Holiday.\" }";
