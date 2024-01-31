@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TidesQueryService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">team01</a> &gt; <a href="index.source.html" class="el_package">edu.ucsb.cs156.spring.backenddemo.services</a> &gt; <span class="el_source">TidesQueryService.java</span></div><h1>TidesQueryService.java</h1><pre class="source lang-java linenums">package edu.ucsb.cs156.spring.backenddemo.services;
+
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.web.client.RestTemplate;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+
+<span class="fc" id="L21">@Slf4j</span>
+@Service
+public class TidesQueryService {
+
+
+    private final RestTemplate restTemplate;
+
+<span class="fc" id="L28">    public TidesQueryService(RestTemplateBuilder restTemplateBuilder) {</span>
+<span class="fc" id="L29">        restTemplate = restTemplateBuilder.build();</span>
+<span class="fc" id="L30">    }</span>
+
+    // Documentation for endpoint is at: https://api.tidesandcurrents.noaa.gov/api/prod/
+    public static final String ENDPOINT = &quot;https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=ucsb-cs156&amp;begin_date={beginDate}&amp;end_date={endDate}&amp;station={station}&amp;product=predictions&amp;datum=mllw&amp;units=english&amp;time_zone=lst_ldt&amp;interval=hilo&amp;format=json&quot;;
+
+    public String getJSON(String beginDate, String endDate, String station) throws HttpClientErrorException {
+<span class="fc" id="L36">        log.info(&quot;beginDate={}, endDate={}, station={}&quot;, beginDate, endDate, station);</span>
+<span class="fc" id="L37">        HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L38">        headers.setAccept(List.of(MediaType.APPLICATION_JSON));</span>
+<span class="fc" id="L39">        headers.setContentType(MediaType.APPLICATION_JSON);</span>
+
+<span class="fc" id="L41">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(&quot;body&quot;, headers);</span>
+
+<span class="fc" id="L43">        Map&lt;String, String&gt; uriVariables = Map.of(&quot;beginDate&quot;, beginDate, &quot;endDate&quot;, endDate, &quot;station&quot;, station);</span>
+
+<span class="fc" id="L45">        ResponseEntity&lt;String&gt; re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,</span>
+                uriVariables);
+<span class="fc" id="L47">        return re.getBody();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
