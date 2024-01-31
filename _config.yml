@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-w24/team01-w24-4pm-3
 owner: ucsb-cs156-w24
 repo_name: team01-w24-4pm-3
-pull_requests: [{"author":{"id":"U_kgDOBdHRmA","is_bot":false,"login":"srambhatla30","name":""},"headRefName":"Sid-LocationService","number":40,"title":"updating LocationQueryService with correct endpoint","url":"https://github.com/ucsb-cs156-w24/team01-w24-4pm-3/pull/40"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjY2ODkyOTQw","is_bot":false,"login":"konarkv","name":""},"headRefName":"Konark-PublicHoliday-Controller","number":41,"title":"KV PH Controller: Added Controller and tests","url":"https://github.com/ucsb-cs156-w24/team01-w24-4pm-3/pull/41"},{"author":{"id":"U_kgDOBdHRmA","is_bot":false,"login":"srambhatla30","name":""},"headRefName":"Sid-LocationService","number":40,"title":"updating LocationQueryService with correct endpoint","url":"https://github.com/ucsb-cs156-w24/team01-w24-4pm-3/pull/40"}]
