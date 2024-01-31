@@ -29,7 +29,7 @@ public class JokeController {
     @Autowired
     JokeQueryService jokeQueryService;
 
-    @Operation(summary = "Get jokes from a specified category and amount", description = "Fetches a specified amount of jokes from a given category")
+    @Operation(summary = "Get jokes from a specified category and amount")
     @GetMapping("/get")
     public ResponseEntity<String> getJokes(
         @Parameter(name="category", description="The category of the joke", example="Programming") @RequestParam String category,
