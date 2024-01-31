@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JokeQueryService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">team01</a> &gt; <a href="index.source.html" class="el_package">edu.ucsb.cs156.spring.backenddemo.services</a> &gt; <span class="el_source">JokeQueryService.java</span></div><h1>JokeQueryService.java</h1><pre class="source lang-java linenums">package edu.ucsb.cs156.spring.backenddemo.services;
+
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+// taken from example EarthquakeQueryService
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpMethod;
+// taken from example EarthquakeQueryService
+import java.util.List;
+import java.util.Map;
+// taken from example EarthquakeQueryService
+<span class="fc" id="L19">@Slf4j</span>
+
+
+@Service
+public class JokeQueryService {
+
+    private final RestTemplate restTemplate;
+
+<span class="fc" id="L27">    public JokeQueryService(RestTemplateBuilder restTemplateBuilder) {</span>
+<span class="fc" id="L28">        restTemplate = restTemplateBuilder.build();</span>
+<span class="fc" id="L29">    }</span>
+
+    public static final String ENDPOINT = &quot;https://v2.jokeapi.dev/joke/{category}?amount={numJokes}&quot;;
+
+    public String getJSON(String category, int numJokes) throws HttpClientErrorException {
+<span class="fc" id="L34">        log.info(&quot;category={}, numJokes={}&quot;, category, numJokes);</span>
+
+<span class="fc" id="L36">        HttpHeaders headers = new HttpHeaders();</span>
+
+<span class="fc" id="L38">        headers.setAccept(List.of(MediaType.APPLICATION_JSON));</span>
+<span class="fc" id="L39">        headers.setContentType(MediaType.APPLICATION_JSON);</span>
+
+<span class="fc" id="L41">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(headers);</span>
+
+<span class="fc" id="L43">        Map&lt;String, String&gt; uriVariables = Map.of(</span>
+            &quot;category&quot;, category,
+<span class="fc" id="L45">            &quot;numJokes&quot;, String.valueOf(numJokes)</span>
+        );
+
+<span class="fc" id="L48">        ResponseEntity&lt;String&gt; re = restTemplate.exchange(</span>
+            ENDPOINT, 
+            HttpMethod.GET, 
+            entity, 
+            String.class, 
+            uriVariables
+        );
+
+<span class="fc" id="L56">        return re.getBody();</span>
+        // return &quot;&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
