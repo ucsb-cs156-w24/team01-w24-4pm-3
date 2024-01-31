@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
     @Autowired
     JokeQueryService jokeQueryService;
 
-    @Operation(summary = &quot;Get jokes from a specified category and amount&quot;, description = &quot;Fetches a specified amount of jokes from a given category&quot;)
+    @Operation(summary = &quot;Get jokes from a specified category and amount&quot;)
     @GetMapping(&quot;/get&quot;)
     public ResponseEntity&lt;String&gt; getJokes(
         @Parameter(name=&quot;category&quot;, description=&quot;The category of the joke&quot;, example=&quot;Programming&quot;) @RequestParam String category,
