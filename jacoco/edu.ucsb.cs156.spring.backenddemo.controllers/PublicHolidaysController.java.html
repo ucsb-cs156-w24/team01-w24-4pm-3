@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PublicHolidaysController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">team01</a> &gt; <a href="index.source.html" class="el_package">edu.ucsb.cs156.spring.backenddemo.controllers</a> &gt; <span class="el_source">PublicHolidaysController.java</span></div><h1>PublicHolidaysController.java</h1><pre class="source lang-java linenums">package edu.ucsb.cs156.spring.backenddemo.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.ucsb.cs156.spring.backenddemo.services.PublicHolidayQueryService;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name=&quot;Public Holiday API&quot;)
+<span class="fc" id="L22">@Slf4j</span>
+@RestController
+@RequestMapping(&quot;/api/publicholidays&quot;)
+<span class="fc" id="L25">public class PublicHolidaysController {</span>
+<span class="fc" id="L26">    ObjectMapper mapper = new ObjectMapper();</span>
+
+    @Autowired
+    PublicHolidayQueryService publicHolidayQueryService;
+
+    @Operation(summary = &quot;Get public holidays&quot;, description = &quot;Fetches all public holidays within a given year in a specified country using its country code&quot;)
+    @GetMapping(&quot;/get&quot;)
+    public ResponseEntity&lt;String&gt; getPublicHolidays(
+        @Parameter(name=&quot;year&quot;, description=&quot;The year of the public holidays&quot;, example=&quot;2003&quot;) @RequestParam String year,
+        @Parameter(name=&quot;countryCode&quot;, description=&quot;The 2 letter code for the country in which the public holidays are held&quot;, example=&quot;US&quot;) @RequestParam String countryCode
+    ) throws JsonProcessingException {
+<span class="fc" id="L37">        log.info(&quot;getPublicHolidays: year={} countryCode={}&quot;, year, countryCode); </span>
+<span class="fc" id="L38">        String result = publicHolidayQueryService.getJSON(year, countryCode);</span>
+<span class="fc" id="L39">        return ResponseEntity.ok().body(result);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
